@@ -70,7 +70,7 @@ UINT TCPScanner::ThreadCSocketScan(LPVOID pParam)
 			//AfxMessageBox("2");
 			if (uPort<1024)
 			{
-				ptr->OpenPort.insert(uPort);
+				ptr->OpenPort[ptr->IPStrToInt(strIP)].insert(uPort);
 				struct servent *se;
 				se = getservbyport(htons(uPort), "tcp");
 				if (se != NULL)
@@ -154,9 +154,9 @@ UINT TCPScanner::IPStrToInt(CString IPStr)
 	return IP.uInt;
 }
 //实际没用…返回的是开放端口集合
-set< UINT > TCPScanner::GetOpenPort()
+set< UINT > TCPScanner::GetOpenPort(UINT ip)
 {
-	return OpenPort;
+	return OpenPort[ip];
 }
 //开始扫描，设置一些参数
 void TCPScanner::start()
@@ -186,5 +186,7 @@ void TCPScanner::start()
 		}
 	}
 }
-//A328-1
-//A315
+//周五
+//最迟下周一
+//计A328-1
+//计A315

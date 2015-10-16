@@ -30,6 +30,7 @@
 
 #include <iostream>
 #include <set>
+#include <map>
 #include <afxsock.h>
 #include <Windows.h>
 
@@ -69,7 +70,7 @@ private:
 	BOOL	run;		//控制线程运行
 	int		ThreadCount;	//线程计数
 	THREADPARAM		ThreadParam;	//传递给线程的参数
-	set< UINT > OpenPort;
+	map< UINT , set<UINT> > OpenPort;
 	CTreeCtrl*	m_ctlTreeResult;
 	HANDLE single;
 	typedef void(*CallBack)(int, void*);
@@ -101,7 +102,7 @@ public:
 
 	CString IPIntToStr(UINT IPInt);
 	UINT IPStrToInt(CString IPStr);
-	set< UINT > GetOpenPort();
+	set< UINT > GetOpenPort(UINT IP);
 	int getThread()
 	{
 		return ThreadCount;
